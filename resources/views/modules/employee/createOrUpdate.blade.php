@@ -59,7 +59,7 @@
                                         <select name="department_id" id="" class="form-control">
                                             <option value="">Select Department</option>
                                             @foreach ($departments as $dep)
-                                            <option value="{{ $dep->dep_id }}" {{ $dep->dep_id  == @$edit->dep_id ? 'Selected' : ''}}>{{ $dep->dep_name }}</option>
+                                            <option value="{{ $dep->dep_id }}" {{ $dep->dep_id  == @$edit->department_id ? 'Selected' : ''}}>{{ $dep->dep_name }}</option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('department_id'))
@@ -73,8 +73,8 @@
                                         <select name="designation_id" id="" class="form-control">
                                             <option value="">Select Designation</option>
                                             @foreach ($designations as $d)
-                                            <option value="{{ $d->d_id }}" {{ $d->d_id  == @$edit->d_id ? 'Selected' : ''}}>{{ $d->d_name }}</option>
-                                            @endforeach 
+                                            <option value="{{ $d->d_id }}" {{ $d->d_id  == @$edit->designation_id ? 'Selected' : ''}}>{{ $d->d_name }}</option>
+                                            @endforeach
                                         </select>
                                         @if ($errors->has('designation_id'))
                                         <span class="text-danger">{{ $errors->first('designation_id') }}</span>

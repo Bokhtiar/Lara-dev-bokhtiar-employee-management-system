@@ -23,7 +23,7 @@
                     <div class="panel-body">
                         <div class="table-responsive">
                         <table id="example" class="display table " style="width: 100%; cellspacing: 0;">
-                            <thead class="">
+                            <thead class="text-center">
                                 <tr>
                                     <th>Index</th>
                                     <th>Image</th>

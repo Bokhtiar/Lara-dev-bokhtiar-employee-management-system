@@ -105,9 +105,12 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        //
+        $edit = Employee::find($id);
+        $designations = Designation::query()->Active()->get(['d_id', 'd_name']);
+        $departments = Department::query()->Active()->get(['dep_id', 'dep_name']);
+        return view('modules.employee.createOrUpdate', compact('designations', 'departments','edit'));
     }
 
     /**
@@ -117,9 +120,54 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'emp_name'=>' string | required | max:30 | min:2 ',
+            'job_id' => 'required',
+            'emp_email' => 'required',
+            'emp_phone' => 'required',
+            'department_id' => 'required',
+            'designation_id' => 'required',
+            'emp_salary' => 'required',
+            'join_date' => 'required',
+            'emp_em' => 'required',
+        ]);
+        if($validated){
+            try{
+                DB::beginTransaction();
+                $employee = Employee::find($id);
+                $emp_image = array();
+                if ($request->hasFile('emp_image')) {
+                    foreach ($request->emp_image as $key => $photo) {
+                        $path = $photo->store('uploads/emp_image/photos');
+                        array_push($emp_image, $path);
+                    }
+
+                }
+                $employeeU = $employee->update([
+                    'emp_name' => $request->emp_name,
+                    'job_id' => $request->job_id,
+                    'emp_email' => $request->emp_email,
+                    'emp_phone' => $request->emp_phone,
+                    'department_id' => $request->department_id,
+                    'designation_id' => $request->designation_id,
+                    'emp_salary' => $request->emp_salary,
+                    'join_date' => $request->join_date,
+                    'end_date' => $request->end_date,
+                    'emp_em' => $request->emp_em,
+                    'emp_image' => json_encode($emp_image),
+                ]);
+
+                if (!empty($employeeU)) {
+                    DB::commit();
+                    return redirect()->route('employee.index')->with('success','Employee Create successfully!');
+                }
+                throw new \Exception('Invalid About Information');
+            }catch(\Exception $ex){
+                DB::rollBack();
+            }
+        }
     }
 
     /**
@@ -128,8 +176,18 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
+        Employee::find($id)->delete();
+        return redirect()->route('employee.index')->with('success','Employee Deleted successfully!');
     }
+
+
+    public function status($id)
+    {
+        $employee = Employee::find($id);
+        Employee::query()->Status($employee);
+        return redirect()->route('employee.index')->with('warning','Employee Status Change successfully!');
+    }
+
 }
