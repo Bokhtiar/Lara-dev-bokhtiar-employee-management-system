@@ -1,6 +1,6 @@
 <div class="page-sidebar">
     <a class="logo-box" href="index.html">
-        <span>ecaps</span>
+        <span>Employee Attendance Manegment System</span>
         <i class="icon-radio_button_unchecked" id="fixed-sidebar-toggle-button"></i>
         <i class="icon-close" id="sidebar-toggle-button-close"></i>
     </a>
@@ -13,30 +13,18 @@
                     </a>
                 </li>
                 <li>
-                    <a href="@route('admin.category.index')">
-                        <i class="menu-icon icon-inbox"></i><span>Categories</span>
+                    <a href="@route('department.index')">
+                        <i class="menu-icon icon-inbox"></i><span>Department</span>
                     </a>
                 </li>
+
                 <li>
                     <a href="javascript:void(0)">
-                        <i class="menu-icon icon-flash_on"></i><span>Cateogires</span><i class="accordion-icon fa fa-angle-left"></i>
+                        <i class="menu-icon icon-layers"></i><span>test's</span><i class="accordion-icon fa fa-angle-left"></i>
                     </a>
                     <ul class="sub-menu">
-                        <li> <a href="@route('admin.parentCategory.index')"> Parent Category</a> </li>
-                        <li><a href="@route('admin.category.index')">Category list</a></li>
-                        <li><a href="@route('admin.category.create')">Create Category</a></li>
-                        <li><a href="@route('admin.subcategory.index')">Sub Category</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript:void(0)">
-                        <i class="menu-icon icon-layers"></i><span>Course's</span><i class="accordion-icon fa fa-angle-left"></i>
-                    </a>
-                    <ul class="sub-menu">
-                        <li><a href="@route('admin.course.index')">Course List</a></li>
-                        <li><a href="@route('admin.course.create')">Course Create</a></li>
-                        <li><a href="@route('admin.lession.index')">lessions</a></li>
-                        <li><a href="@route('admin.video.index')">Videos</a></li> 
+                        <li><a href="">asd</a></li>
+
                     </ul>
                 </li>
                 <li>

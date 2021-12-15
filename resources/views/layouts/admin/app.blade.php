@@ -11,7 +11,7 @@
         <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
         <!-- Title -->
-        <title> Schoolpara @yield('title')</title>
+        <title> Employee Attendance @yield('title')</title>
 
         <!-- Styles -->
         <link href="{{ asset('backend') }}/https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">

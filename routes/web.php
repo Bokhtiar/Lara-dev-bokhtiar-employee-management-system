@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DepartmentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//departments
+Route::resource('department', DepartmentController::class);
+Route::get('department/status/{id}', [App\Http\Controllers\DepartmentController::class, 'status'])->name('department.status');
