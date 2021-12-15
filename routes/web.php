@@ -30,4 +30,4 @@ Route::get('department/status/{id}', [App\Http\Controllers\DepartmentController:
 
 //designations
 Route::resource('designation', DesignationController::class);
-Route::get('department/status/{id}', [App\Http\Controllers\DesignationController::class, 'status'])->name('department.status');
+Route::get('designation/status/{id}', [App\Http\Controllers\DesignationController::class, 'status'])->name('designation.status');

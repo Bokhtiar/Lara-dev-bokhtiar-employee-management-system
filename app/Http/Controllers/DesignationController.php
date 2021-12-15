@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Designation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DesignationController extends Controller
 {
@@ -14,17 +15,8 @@ class DesignationController extends Controller
      */
     public function index()
     {
-        dd(23);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $designations = Designation::latest()->get(['d_id', 'd_name', 'status']);
+        return view('modules.employee.designation.index', compact('designations'));
     }
 
     /**
@@ -35,18 +27,25 @@ class DesignationController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validated = $request->validate([
+            'd_name'=>' string | required | unique:designations| max:30 | min:2 ',
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Designation  $designation
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Designation $designation)
-    {
-        //
+        if($validated){
+            try{
+                DB::beginTransaction();
+                $d = Designation::create([
+                    'd_name' => $request->d_name,
+                ]);
+                if (!empty($d)) {
+                    DB::commit();
+                    return redirect()->route('designation.index')->with('success','Designation Created successfully!');
+                }
+                throw new \Exception('Invalid About Information');
+            }catch(\Exception $ex){
+                DB::rollBack();
+            }
+        }
     }
 
     /**
@@ -55,9 +54,11 @@ class DesignationController extends Controller
      * @param  \App\Models\Designation  $designation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Designation $designation)
+    public function edit($id)
     {
-        //
+        $edit = Designation::find($id);
+        $designations = Designation::latest()->get(['d_id', 'd_name', 'status']);
+        return view('modules.employee.designation.index', compact('designations', 'edit'));
     }
 
     /**
@@ -67,9 +68,28 @@ class DesignationController extends Controller
      * @param  \App\Models\Designation  $designation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Designation $designation)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'd_name'=>' string | required | unique:designations| max:30 | min:2 ',
+        ]);
+
+        if($validated){
+            try{
+                DB::beginTransaction();
+                $d = Designation::find($id);
+                $dUpdate = $d->update([
+                    'd_name' => $request->d_name,
+                ]);
+                if (!empty($dUpdate)) {
+                    DB::commit();
+                    return redirect()->route('designation.index')->with('success','Designation Update successfully!');
+                }
+                throw new \Exception('Invalid About Information');
+            }catch(\Exception $ex){
+                DB::rollBack();
+            }
+        }
     }
 
     /**
@@ -78,8 +98,19 @@ class DesignationController extends Controller
      * @param  \App\Models\Designation  $designation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Designation $designation)
+    public function destroy($id)
     {
-        //
+        Designation::find($id)->delete();
+        return redirect()->route('designation.index')->with('success','designation Deleted successfully!');
     }
+
+
+    public function status($id)
+    {
+        $designation = Designation::find($id);
+        Designation::query()->Status($designation);
+        return redirect()->route('designation.index')->with('warning','Designation Status Change successfully!');
+    }
+
+
 }

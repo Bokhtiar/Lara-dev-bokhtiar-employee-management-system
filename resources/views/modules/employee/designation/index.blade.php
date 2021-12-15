@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+@section('title', 'Designation')
 @section('admin_content')
 @section('title', 'Designations')
 
@@ -79,28 +80,27 @@
             </div>
         </div>
         <div class="col-sm-12 col-12 col-md-4 col-lg-4">
-
             <div id="main-wrapper">
                 <div class="">
                     <div class="">
                         <div class="panel panel-white">
                             <div class="panel-heading clearfix">
-                                <h4 class="panel-title">Department Create Form</h4>
+                                <h4 class="panel-title">Designation Create Form</h4>
                             </div>
                             <div class="panel-body">
                                 @if(@$edit)
-                                <form action="@route('department.update', $edit->dep_id)" method="POST" enctype="multipart/form-data">
+                                <form action="@route('designation.update', $edit->d_id)" method="POST" enctype="multipart/form-data">
                                     @method('put')
                                 @else
-                                <form action="@route('department.store')" method="POST" enctype="multipart/form-data">
+                                <form action="@route('designation.store')" method="POST" enctype="multipart/form-data">
                                     @method('post')
                                 @endif
                                     @csrf
                                     <div class="form-group">
-                                        <label for="dep_name">Department Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" placeholder="Department Name" name="dep_name" value="{{ @$edit->dep_name }}">
-                                        @if ($errors->has('dep_name'))
-                                        <span class="text-danger">{{ $errors->first('dep_name') }}</span>
+                                        <label for="dep_name">Designation Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Designation Name" name="d_name" value="{{ @$edit->d_name }}">
+                                        @if ($errors->has('d_name'))
+                                        <span class="text-danger">{{ $errors->first('d_name') }}</span>
                                         @endif
                                     </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
