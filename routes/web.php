@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DesignationController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +27,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //departments
 Route::resource('department', DepartmentController::class);
 Route::get('department/status/{id}', [App\Http\Controllers\DepartmentController::class, 'status'])->name('department.status');
+
+//designations
+Route::resource('designation', DesignationController::class);
+Route::get('department/status/{id}', [App\Http\Controllers\DesignationController::class, 'status'])->name('department.status');

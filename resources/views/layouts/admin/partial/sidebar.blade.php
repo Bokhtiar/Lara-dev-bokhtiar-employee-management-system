@@ -19,6 +19,12 @@
                 </li>
 
                 <li>
+                    <a href="@route('designation.index')">
+                        <i class="menu-icon icon-inbox"></i><span>Designation</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="javascript:void(0)">
                         <i class="menu-icon icon-layers"></i><span>test's</span><i class="accordion-icon fa fa-angle-left"></i>
                     </a>
