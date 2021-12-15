@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
+use App\Http\Controllers\EmployeeController;
+use App\Models\Employee;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +33,7 @@ Route::get('department/status/{id}', [App\Http\Controllers\DepartmentController:
 //designations
 Route::resource('designation', DesignationController::class);
 Route::get('designation/status/{id}', [App\Http\Controllers\DesignationController::class, 'status'])->name('designation.status');
+
+//employee
+Route::resource('employee', EmployeeController::class);
+Route::get('employee/status/{id}', [App\Http\Controllers\EmployeeController::class, 'status'])->name('employee.status');
