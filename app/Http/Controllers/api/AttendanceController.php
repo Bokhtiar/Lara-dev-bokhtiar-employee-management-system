@@ -37,14 +37,34 @@ class AttendanceController extends Controller
      */
     public function store(Request $request)
     {
-        $attendance = new Attendance;
-        $attendance->employee_id = $request->employee_id;
-        $attendance->in = $request->in;
-        $attendance->out = $request->out;
-        $attendance->em = $request->em;
-        $attendance->address = $request->address;
-        $attendance->save();
-        return response()->json($attendance);
+        if($request->in){
+            $attendance = new Attendance;
+            $attendance->emp_id = $request->employee_id;
+            $attendance->in = $request->in;
+            $attendance->em = $request->em;
+            $attendance->address = $request->address;
+            $attendance->save();
+            return response()->json([
+                'attendance' => $attendance,
+                'message'=> 'Data Inserted'
+            ]);
+        }elseif($request->out){
+            $attendance = new Attendance;
+            $attendance->emp_id = $request->employee_id;
+            $attendance->out = $request->out;
+            $attendance->em = $request->em;
+            $attendance->address = $request->address;
+            $attendance->save();
+            return response()->json([
+                'attendance' => $attendance,
+                'message'=> 'Data Inserted'
+            ]);
+        }else{
+            return response()->json([
+                'message' => 'Some Information missing'
+            ]);
+        }
+
     }
 
     /**
