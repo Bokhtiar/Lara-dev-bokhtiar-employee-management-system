@@ -35,6 +35,15 @@
                 </li>
                 <li>
                     <a href="javascript:void(0)">
+                        <i class="menu-icon icon-layers"></i><span>Salary</span><i class="accordion-icon fa fa-angle-left"></i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="@route('salary.index')">Salary List</a></li>
+                        <li><a href="@route('salary.create')">Salary Create</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
                         <i class="menu-icon icon-layers"></i><span>Attendance</span><i class="accordion-icon fa fa-angle-left"></i>
                     </a>
                     <ul class="sub-menu">

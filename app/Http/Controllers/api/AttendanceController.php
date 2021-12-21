@@ -15,8 +15,7 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        $attendances = Attendance::all();
-        return view('modules.employee.attendance.index', compact('attendances'));
+        
     }
 
     /**

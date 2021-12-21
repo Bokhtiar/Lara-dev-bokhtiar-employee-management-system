@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attendance;
 use Illuminate\Http\Request;
 
 class AttendanceController extends Controller
@@ -13,7 +14,8 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        //
+        $attendances = Attendance::all();
+        return view('modules.employee.attendance.index', compact('attendances'));
     }
 
     /**
@@ -45,7 +47,8 @@ class AttendanceController extends Controller
      */
     public function show($id)
     {
-        //
+        $item = Attendance::find($id);
+        return view('modules.employee.attendance.map', compact('item'));
     }
 
     /**

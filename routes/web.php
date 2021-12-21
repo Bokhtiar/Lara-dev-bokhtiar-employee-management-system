@@ -1,10 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\AttendanceController;
+use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\SalaryController;
 use App\Models\Employee;
+use Database\Factories\SalaryFactory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -41,3 +43,6 @@ Route::get('employee/status/{id}', [App\Http\Controllers\EmployeeController::cla
 
 //attendence
 Route::resource('attendance', AttendanceController::class);
+//salary
+Route::resource('salary', SalaryController::class);
+Route::get('salary/status/{id}', [App\Http\Controllers\SalaryController::class, 'status'])->name('salary.status');
