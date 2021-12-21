@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Employee;
+use App\Http\Controllers\Controller;
 use App\Models\Salary;
-use DateTime;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class SalaryController extends Controller
 {
@@ -18,7 +16,10 @@ class SalaryController extends Controller
     public function index()
     {
         $salaries = Salary::Latest()->get();
-        return view('modules.employee.salary.index', compact('salaries'));
+        return response()->json([
+            'salary' => $salaries,
+            'message' => 'Salary List'
+        ]);
     }
 
     /**
@@ -28,10 +29,9 @@ class SalaryController extends Controller
      */
     public function create()
     {
-        $emps = Employee::get(['emp_id', 'emp_name']);
-        return view('modules.employee.salary.createOrUpdate', compact('emps'));
-
+        //
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -40,27 +40,7 @@ class SalaryController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'emp_id'=>' required',
-        ]);
-
-        if($validated){
-            try{
-                DB::beginTransaction();
-                $dt = new DateTime();
-                $salary = Salary::create([
-                    'date' => $dt->format('Y-m-d H:i'),
-                    'emp_id' => $request->emp_id,
-                ]);
-                if (!empty($salary)) {
-                    DB::commit();
-                    return redirect()->route('salary.index')->with('success','Salary Created successfully!');
-                }
-                throw new \Exception('Invalid About Information');
-            }catch(\Exception $ex){
-                DB::rollBack();
-            }
-        }
+        //
     }
 
     /**
@@ -105,15 +85,6 @@ class SalaryController extends Controller
      */
     public function destroy($id)
     {
-        Salary::find($id)->delete();
-        return redirect()->route('salary.index')->with('success','Employee Deleted successfully!');
-    }
-
-
-    public function status($id)
-    {
-        $salary = Salary::find($id);
-        Salary::query()->Status($salary);
-        return redirect()->route('salary.index')->with('warning','Salary Status Change successfully!');
+        //
     }
 }

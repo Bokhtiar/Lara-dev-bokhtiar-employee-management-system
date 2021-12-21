@@ -22,3 +22,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('attendance/store', [App\Http\Controllers\Api\AttendanceController::class, 'store']);
 
 Route::get('employee/index', [App\Http\Controllers\Api\EmployeeController::class, 'index']);
+Route::get('salary/index', [App\Http\Controllers\Api\SalaryController::class, 'index']);
