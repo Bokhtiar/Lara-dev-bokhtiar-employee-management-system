@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AttendanceController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\DesignationController;
 use App\Http\Controllers\EmployeeController;
@@ -37,3 +38,6 @@ Route::get('designation/status/{id}', [App\Http\Controllers\DesignationControlle
 //employee
 Route::resource('employee', EmployeeController::class);
 Route::get('employee/status/{id}', [App\Http\Controllers\EmployeeController::class, 'status'])->name('employee.status');
+
+//attendence
+Route::resource('attendance', AttendanceController::class);

@@ -29,8 +29,16 @@
                         <i class="menu-icon icon-layers"></i><span>Employee</span><i class="accordion-icon fa fa-angle-left"></i>
                     </a>
                     <ul class="sub-menu">
-                        <li><a href="">Employee lIST</a></li>
+                        <li><a href="@route('employee.index')">Employee List</a></li>
                         <li><a href="@route('employee.create')">Employee Create</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="menu-icon icon-layers"></i><span>Attendance</span><i class="accordion-icon fa fa-angle-left"></i>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="@route('attendance.index')">Attendance List</a></li>
                     </ul>
                 </li>
                 <li>

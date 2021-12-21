@@ -17,4 +17,9 @@ class Employee extends Model
     protected $fillable = [
         'emp_image', 'job_id', 'emp_name', 'emp_email', 'emp_phone', 'department_id', 'designation_id', 'emp_salary', 'join_date', 'end_date', 'emp_em', 'status'
     ];
+
+    public function dep()
+    {
+        return $this->belongsTo(Department::class, 'dep_id', 'dep_id');
+    }
 }
