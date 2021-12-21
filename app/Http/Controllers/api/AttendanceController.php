@@ -42,26 +42,32 @@ class AttendanceController extends Controller
             $attendance->emp_id = $request->employee_id;
             $attendance->in = $request->in;
             $attendance->em = $request->em;
-            $attendance->address = $request->address;
+            $attendance->job_id = $request->job_id;
+            $attendance->let = $request->let;
+            $attendance->lon = $request->lon;
+            $attendance->streetAdreess = $request->streetAdreess;
             $attendance->save();
             return response()->json([
                 'attendance' => $attendance,
-                'message'=> 'Data Inserted'
+                'message'=> 'Good Morning, Welcome To FRESHOSFOTBD'
             ]);
         }elseif($request->out){
             $attendance = new Attendance;
             $attendance->emp_id = $request->employee_id;
             $attendance->out = $request->out;
             $attendance->em = $request->em;
-            $attendance->address = $request->address;
+            $attendance->job_id = $request->job_id;
+            $attendance->let = $request->let;
+            $attendance->lon = $request->lon;
+            $attendance->streetAdreess = $request->streetAdreess;
             $attendance->save();
             return response()->json([
                 'attendance' => $attendance,
-                'message'=> 'Data Inserted'
+                'message'=> 'Good Night, Thnak You'
             ]);
         }else{
             return response()->json([
-                'message' => 'Some Information missing'
+                'message' => 'Please Valid Input Your Attendence Form.'
             ]);
         }
 

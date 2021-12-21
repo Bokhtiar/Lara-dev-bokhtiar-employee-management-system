@@ -19,7 +19,10 @@ class CreateAttendancesTable extends Migration
             $table->string('in')->nullable();
             $table->string('out')->nullable();
             $table->string('em');
-            $table->string('address')->nullable();
+            $table->string('job_id');
+            $table->string('let');
+            $table->string('lon');
+            $table->string('streetAdreess');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
