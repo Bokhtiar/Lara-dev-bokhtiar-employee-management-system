@@ -46,3 +46,5 @@ Route::resource('attendance', AttendanceController::class);
 //salary
 Route::resource('salary', SalaryController::class);
 Route::get('salary/status/{id}', [App\Http\Controllers\SalaryController::class, 'status'])->name('salary.status');
+Route::get('employee/find/{id}', [App\Http\Controllers\SalaryController::class, 'edit']);
+

@@ -15,8 +15,12 @@ class CreateSalariesTable extends Migration
     { // 'emp_id', 'date', 'month', 'year', 'salay', 'status',
         Schema::create('salaries', function (Blueprint $table) {
             $table->id('salary_id');
-            $table->string('emp_id');
-            $table->string('date');
+            $table->string('name');
+            $table->string('job_id');
+            $table->string('salary');
+            $table->string('day');
+            $table->string('month');
+            $table->string('year');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

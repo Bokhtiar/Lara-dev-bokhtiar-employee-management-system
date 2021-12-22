@@ -30,7 +30,9 @@
                                     <th>Name</th>
                                     <th>Job ID</th>
                                     <th>Salary</th>
-                                    <th>Date</th>
+                                    <th>Year</th>
+                                    <th>Month</th>
+                                    <th>Day</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -41,8 +43,10 @@
                                     <th>Name</th>
                                     <th>Job ID</th>
                                     <th>Salary</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
+                                    <th>Year</th>
+                                    <th>Month</th>
+                                    <th>Day</th>
+                                    <th>Satatus</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -50,15 +54,17 @@
                                 @foreach ($salaries as $item)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $item->emp? $item->emp->emp_name :'Data Deleted'}}</td>
-                                        <td>{{ $item->emp? $item->emp->job_id : 'Data Deleted' }}</td>
-                                        <td>{{ $item->emp? $item->emp->emp_salary : 'Data Deleted' }}</td>
-                                        <td>{{ $item->date }}</td>
+                                        <td>{{ $item->name}}</td>
+                                        <td>{{ $item->job_id}}</td>
+                                        <td>{{ $item->salary}}</td>
+                                        <td>{{ $item->year }}</td>
+                                        <td>{{ $item->month }}</td>
+                                        <td>{{ $item->day }}</td>
                                         <td>
                                             @if($item->status == 1)
-                                            <a type="button" href="@route('salary.status', $item->salary_id)" class="btn btn-success btn-addon btn-sm"><i class="fa fa-spin fa-refresh"></i>  Success</a>
+                                            <a type="button" href="@route('salary.status', $item->salary_id)" class="btn btn-success btn-addon btn-sm"><i class="fa fa-spin fa-refresh"></i>  Paid</a>
                                             @else
-                                            <a type="button" href="@route('salary.status', $item->salary_id)"  class="btn btn-warning btn-addon btn-sm"><i class="fa fa-remove" aria-hidden="true"></i> Pending</a>
+                                            <a type="button" href="@route('salary.status', $item->salary_id)"  class="btn btn-warning btn-addon btn-sm"><i class="fa fa-remove" aria-hidden="true"></i> Non-Paid</a>
                                             @endif
                                         </td>
                                         <td class="form-inline">

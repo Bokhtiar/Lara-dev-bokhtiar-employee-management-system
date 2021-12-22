@@ -28,7 +28,7 @@ class SalaryController extends Controller
      */
     public function create()
     {
-        $emps = Employee::get(['emp_id', 'emp_name']);
+        $emps = Employee::all();
         return view('modules.employee.salary.createOrUpdate', compact('emps'));
 
     }
@@ -41,16 +41,23 @@ class SalaryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'emp_id'=>' required',
+            'name'=>' required',
+            'job_id'=>' required',
+            'salary'=>' required',
+            'day'=>' required',
+            'month'=>' required',
+            'year'=>' required',
         ]);
-
         if($validated){
             try{
                 DB::beginTransaction();
-                $dt = new DateTime();
                 $salary = Salary::create([
-                    'date' => $dt->format('Y-m-d H:i'),
-                    'emp_id' => $request->emp_id,
+                    'name' => $request->name,
+                    'job_id' => $request->job_id,
+                    'salary' => $request->salary,
+                    'day' => $request->day,
+                    'month' => $request->month,
+                    'year' => $request->year,
                 ]);
                 if (!empty($salary)) {
                     DB::commit();
@@ -82,7 +89,10 @@ class SalaryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $emp = Employee::find($id);
+        return response()->json([
+            'emp' => $emp,
+        ]);
     }
 
     /**
