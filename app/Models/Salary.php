@@ -15,7 +15,7 @@ class Salary extends Model
     protected $primaryKey='salary_id';
 
     protected $fillable = [
-        'name', 'job_id', 'salary', 'day', 'month', 'year', 'status',
+        'name', 'job_id', 'salary', 'day', 'month', 'year', 'status', 'emp_id'
     ];
 
     public function emp()

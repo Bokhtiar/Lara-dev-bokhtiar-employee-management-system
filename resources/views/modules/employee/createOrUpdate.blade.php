@@ -53,13 +53,24 @@
                             </div><!--name, job_id, email-->
 
                             <div class="row">
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+
+                                 <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="emp_name">Employee Password <span class="text-danger">*</span></label>
+                                        <input type="password" name="password" class="form-control" placeholder="Employee Password" id="">
+                                        @if ($errors->has('password'))
+                                        <span class="text-danger">{{ $errors->first('password') }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                                     <div class="form-group">
                                         <label for="emp_name">Employee Department <span class="text-danger">*</span></label>
                                         <select name="department_id" id="" class="form-control">
                                             <option value="">Select Department</option>
                                             @foreach ($departments as $dep)
-                                            <option value="{{ $dep->dep_id }}" {{ $dep->dep_id  == @$edit->department_id ? 'Selected' : ''}}>{{ $dep->dep_name }}</option>
+                                            <option value="{{ $dep->dep_name }}" {{ $dep->dep_id  == @$edit->department_id ? 'Selected' : ''}}>{{ $dep->dep_name }}</option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('department_id'))
@@ -67,13 +78,13 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="col-12 col-sm-12 col-md-4 col-lg-4">
                                     <div class="form-group">
                                         <label for="emp_name">Employee Designation <span class="text-danger">*</span></label>
                                         <select name="designation_id" id="" class="form-control">
                                             <option value="">Select Designation</option>
                                             @foreach ($designations as $d)
-                                            <option value="{{ $d->d_id }}" {{ $d->d_id  == @$edit->designation_id ? 'Selected' : ''}}>{{ $d->d_name }}</option>
+                                            <option value="{{ $d->d_name }}" {{ $d->d_id  == @$edit->designation_id ? 'Selected' : ''}}>{{ $d->d_name }}</option>
                                             @endforeach
                                         </select>
                                         @if ($errors->has('designation_id'))
@@ -191,7 +202,7 @@
                         position: uluru,
                         map: map,
                         draggable: true
-                    }); 
+                    });
                     google.maps.event.addListener(marker,'position_changed',
                         function (){
                             let lat = marker.position.lat()

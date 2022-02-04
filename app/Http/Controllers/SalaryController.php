@@ -53,6 +53,7 @@ class SalaryController extends Controller
                 DB::beginTransaction();
                 $salary = Salary::create([
                     'name' => $request->name,
+                    'emp_id' =>$request->emp_id,
                     'job_id' => $request->job_id,
                     'salary' => $request->salary,
                     'day' => $request->day,

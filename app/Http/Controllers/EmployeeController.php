@@ -45,6 +45,7 @@ class EmployeeController extends Controller
             'emp_name'=>' string | required | max:30 | min:2 ',
             'job_id' => 'required',
             'emp_email' => 'required',
+            'password' => 'required',
             'emp_phone' => 'required',
             'department_id' => 'required',
             'designation_id' => 'required',
@@ -63,11 +64,13 @@ class EmployeeController extends Controller
                     }
 
                 }
+
                 $employee = Employee::create([
                     'emp_name' => $request->emp_name,
                     'job_id' => $request->job_id,
                     'emp_email' => $request->emp_email,
                     'emp_phone' => $request->emp_phone,
+                    'password' => $request->password,
                     'department_id' => $request->department_id,
                     'designation_id' => $request->designation_id,
                     'emp_salary' => $request->emp_salary,
@@ -76,7 +79,7 @@ class EmployeeController extends Controller
                     'emp_em' => $request->emp_em,
                     'emp_image' => json_encode($emp_image),
                 ]);
-
+                
                 if (!empty($employee)) {
                     DB::commit();
                     return redirect()->route('employee.index')->with('success','Employee Create successfully!');
@@ -128,6 +131,7 @@ class EmployeeController extends Controller
             'emp_email' => 'required',
             'emp_phone' => 'required',
             'department_id' => 'required',
+            'password' => 'required',
             'designation_id' => 'required',
             'emp_salary' => 'required',
             'join_date' => 'required',
@@ -152,6 +156,7 @@ class EmployeeController extends Controller
                     'emp_phone' => $request->emp_phone,
                     'department_id' => $request->department_id,
                     'designation_id' => $request->designation_id,
+                    'password' => $request->password,
                     'emp_salary' => $request->emp_salary,
                     'join_date' => $request->join_date,
                     'end_date' => $request->end_date,

@@ -27,9 +27,13 @@ class SalaryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function report_salary(Request $request)
     {
-        //
+        $salary = Salary::where('emp_id', $request->id)->get();
+        return response()->json([
+            'salary' => $salary,
+            'message' => 'Salary List user'
+        ]);
     }
 
     /**

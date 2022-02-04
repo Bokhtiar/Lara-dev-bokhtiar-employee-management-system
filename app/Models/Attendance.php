@@ -15,7 +15,7 @@ class Attendance extends Model
     protected $primaryKey='attendance_id';
 
     protected $fillable = [
-        'emp_id', 'job_id', 'in', 'out', 'em', 'let', 'lon', 'streetAdreess', 'status',
+        'emp_id',  'in', 'out',  'lat', 'lon', 'date', 'time','remarks', 'streetAdreess',
     ];
 
     public function emp()

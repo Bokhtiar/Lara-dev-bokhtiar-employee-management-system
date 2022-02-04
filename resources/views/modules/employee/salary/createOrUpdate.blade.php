@@ -38,17 +38,18 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="">Emloyee Name</label>
-                                        <input type="text" class="form-control" name="name" value="asd" id="name">
+                                        <label for="">Employee Name</label>
+                                        <input type="text" class="form-control" name="name" value="" id="name">
+                                        <input type="hidden" class="form-control" name="emp_id" value="" id="emp_id">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="">Emloyee Salary</label>
+                                        <label for="">Employee Salary</label>
                                         <input type="number" class="form-control" name="salary" id="salary">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="">Emloyee Job ID</label>
+                                        <label for="">Employee Job ID</label>
                                         <input type="text" class="form-control" name="job_id" id="job_id">
                                     </div>
 
@@ -107,6 +108,7 @@
                     $('#name').val(response.emp.emp_name),
                     $("#salary").val(response.emp.emp_salary),
                     $("#job_id").val(response.emp.job_id)
+                    $("#emp_id").val(response.emp.emp_id)
                 }
             })
         })

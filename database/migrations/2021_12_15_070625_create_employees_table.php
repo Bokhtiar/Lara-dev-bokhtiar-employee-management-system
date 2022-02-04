@@ -18,10 +18,11 @@ class CreateEmployeesTable extends Migration
             $table->string('emp_name');
             $table->string('emp_image')->nullable();
             $table->string('job_id');
+            $table->string('password');
             $table->string('emp_email');
             $table->string('emp_phone');
-            $table->integer('department_id');
-            $table->integer('designation_id');
+            $table->string('department_id');
+            $table->string('designation_id');
             $table->string('emp_salary');
             $table->string('join_date');
             $table->string('end_date')->nullable();

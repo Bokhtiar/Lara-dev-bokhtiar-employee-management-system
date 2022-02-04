@@ -12,18 +12,18 @@ class CreateAttendancesTable extends Migration
      * @return void
      */
     public function up()
-    { //'employee_id', 'in', 'out', 'em', 'address', 'status',
+    {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id('attendance_id');
             $table->integer('emp_id');
             $table->string('in')->nullable();
             $table->string('out')->nullable();
-            $table->string('em');
-            $table->string('job_id');
-            $table->string('let');
+            $table->string('lat');
             $table->string('lon');
+            $table->string('date');
+            $table->string('time');
             $table->string('streetAdreess');
-            $table->tinyInteger('status')->default(0);
+            $table->longText('remarks');
             $table->timestamps();
         });
     }

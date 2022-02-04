@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class EmployeeController extends Controller
 {
@@ -49,9 +50,29 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function login(Request $request)
     {
-        //
+        $employee = Employee::where('job_id', $request->job_id)->where('password', $request->password)->first();
+        if($employee){
+            if($employee->status == 1){
+                return response()->json([
+                    'Employee' => $employee,
+                    'is_success'=> true,
+                    'message'=> 'Login Successfull'
+                ]);
+            }else{
+                return response()->json([
+                    'is_success'=> false,
+                    'message'=> 'you are inactive contact to admin'
+                ]);
+            }
+
+        }else{
+            return response()->json([
+                'is_success'=>false,
+                'message'=> 'not match'
+            ]);
+        }
     }
 
     /**

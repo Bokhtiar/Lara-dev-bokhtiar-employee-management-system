@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Carbon;
 class AttendanceController extends Controller
 {
     /**
@@ -15,7 +15,7 @@ class AttendanceController extends Controller
      */
     public function index()
     {
-        
+
     }
 
     /**
@@ -23,9 +23,37 @@ class AttendanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function inoutbtn(Request $request , $id= !null )
     {
-        //
+    $puchinbtn =  Attendance::where('emp_id',  $request->id)->where('date',  Carbon::today()->toDateString())->whereNotNull('in')->first();
+    $puchoutbtn =  Attendance::where('emp_id', $request->id)->where('date',  Carbon::today()->toDateString())->whereNotNull('out')->first();
+        if($puchinbtn  && $puchoutbtn){
+            return response()->json([
+                'punchinbtn' => false,
+                'punchoutbtn' => false,
+                'is_success' => 'Attendance Complete For Today',
+            ]);
+        }elseif($puchinbtn){
+            return response()->json([
+                'punchinbtn' => false,
+                'punchoutbtn' => true,
+                'is_success' => 'Already Punched In ',
+            ]);
+        // }elseif($puchoutbtn){
+        //     return response()->json([
+        //         'is_success' => 'attendence  Already Punchout Complete',
+        //     ]);
+        }
+        else{
+            return response()->json([
+                'punchinbtn' => true,
+                'punchoutbtn' => false,
+                'is_success' => false,
+            ]);
+        }
+
+
+
     }
 
     /**
@@ -34,35 +62,37 @@ class AttendanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function inout(Request $request)
     {
         if($request->in){
             $attendance = new Attendance;
             $attendance->emp_id = $request->employee_id;
             $attendance->in = $request->in;
-            $attendance->em = $request->em;
-            $attendance->job_id = $request->job_id;
-            $attendance->let = $request->let;
+            $attendance->lat = $request->lat;
             $attendance->lon = $request->lon;
+            $attendance->remarks = $request->remarks;
+            $attendance->date =  Carbon::today()->toDateString();
+            $attendance->time = date('H:i:s', time());
             $attendance->streetAdreess = $request->streetAdreess;
             $attendance->save();
             return response()->json([
                 'attendance' => $attendance,
-                'message'=> 'Good Morning, Welcome To FRESHOSFOTBD'
+                'message'=> 'Good Morning, Punchin Successfull'
             ]);
         }elseif($request->out){
             $attendance = new Attendance;
             $attendance->emp_id = $request->employee_id;
             $attendance->out = $request->out;
-            $attendance->em = $request->em;
-            $attendance->job_id = $request->job_id;
-            $attendance->let = $request->let;
+            $attendance->lat = $request->lat;
             $attendance->lon = $request->lon;
+            $attendance->remarks = $request->remarks;
+            $attendance->date =  Carbon::today()->toDateString();
+            $attendance->time = date('H:i:s', time());
             $attendance->streetAdreess = $request->streetAdreess;
             $attendance->save();
             return response()->json([
                 'attendance' => $attendance,
-                'message'=> 'Good Night, Thnak You'
+                'message'=> 'Good Evening, Punchout Successfull, Thnak You'
             ]);
         }else{
             return response()->json([

@@ -17,6 +17,7 @@ class CreateSalariesTable extends Migration
             $table->id('salary_id');
             $table->string('name');
             $table->string('job_id');
+            $table->integer('emp_id');
             $table->string('salary');
             $table->string('day');
             $table->string('month');

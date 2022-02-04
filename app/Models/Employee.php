@@ -15,7 +15,7 @@ class Employee extends Model
     protected $primaryKey='emp_id';
 
     protected $fillable = [
-        'emp_image', 'job_id', 'emp_name', 'emp_email', 'emp_phone', 'department_id', 'designation_id', 'emp_salary', 'join_date', 'end_date', 'emp_em', 'status'
+        'emp_image', 'job_id','password', 'emp_name', 'emp_email', 'emp_phone', 'department_id', 'designation_id', 'emp_salary', 'join_date', 'end_date', 'emp_em', 'status'
     ];
 
     public function dep()

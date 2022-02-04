@@ -19,7 +19,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::post('attendance/store', [App\Http\Controllers\Api\AttendanceController::class, 'store']);
+Route::post('attendance/inout', [App\Http\Controllers\Api\AttendanceController::class, 'inout']);
 
-Route::get('employee/index', [App\Http\Controllers\Api\EmployeeController::class, 'index']);
-Route::get('salary/index', [App\Http\Controllers\Api\SalaryController::class, 'index']);
+Route::get('attendance/inoutbtn/{id?}', [App\Http\Controllers\Api\AttendanceController::class, 'inoutbtn']);
+
+Route::get('employee/all', [App\Http\Controllers\Api\EmployeeController::class, 'index']);
+Route::post('employee/login', [App\Http\Controllers\Api\EmployeeController::class, 'login']);
+Route::get('report/salary/all', [App\Http\Controllers\Api\SalaryController::class, 'index']);
+Route::get('report/salary/{id?}', [App\Http\Controllers\Api\SalaryController::class, 'report_salary']);
